@@ -1,4 +1,4 @@
-const { gql, addErrorLoggingToSchema } = require('apollo-server-express');
+const { gql } = require('apollo-server-express');
 
 
 const typeDefa = gql`
@@ -8,32 +8,41 @@ const typeDefa = gql`
 
     type User {
         _id: ID
-        username: String
-        email: String
+        username: String!
+        email: String!
         bookCount: Int
         savedBooks: [Book]
     }
 
+    type Book {
+        bookId: String
+        authors: [String]
+        description: String!
+        title: String!
+        image: String
+        link: String
+    }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
 
-// type Book 
+    Input bookList {
+        bookId: String!
+        title: String!
+        description: String!
+        aurthors: [String]
+        title: String
+        image: String
+        link: String
+    }
 
-
-
-//type Auth
-
-//Input saveInput
-//authors: [String]
-//title: String
-
-
-
-
-type Mutation {
-login(email: String!, password: String!): Auth
-addUser(username: String!,)
-saveBook(saveData: saveInput!): User
-removeBook(bookId: ID!): User
-}
+    type Mutation {
+        login(username: String, email: String!, password: String!): Auth
+        addUser(username: String!, email: String, password: String!)
+        saveBook(bookId: String!, title: String!, description: String!, authors: [String], image: String, link: String): User
+        removeBook(bookId: String!): User
+    }
 `;
 module.exports = typeDefs;

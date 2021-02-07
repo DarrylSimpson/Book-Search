@@ -1,67 +1,64 @@
 import gql from 'graphql-tag';
 
+// names/format/order must match those within server setup (resembles GraphQL Playground mutation syntax)
+
+// passes in variables, $email and $password, as arguments for login form page; logged-in user's data and token will be returned.
 export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        _id
-        username
-      }
+mutation login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    user {
+      _id
+      username
     }
   }
+}
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
-      token
-      user {
-        _id
-        username
-      }
+mutation addUser($email: String!, $username: String!, $password: String!) {
+  addUser(email: $email, username: $username, password: $password) {
+    token
+    user {
+      _id
+      username
     }
   }
+}
 `;
 
 export const SAVE_BOOK = gql`
-  mutation saveBook($saveData: saveInput!) {
-    saveBook(saveData: $saveData) {
-        _id
+  mutation saveBook($bookId: String!, $title: String!, $description: String!, $authors: [String], $image: String, $link: String) {
+    saveBook(bookId: $bookId, title: $title, description: $description, authors: $authors, image: $image, link: $link) {
+      _id
       username
       email
-      saveBook {
-        _id
+      savedBooks {
+        bookId
         title
         description
         authors
-        bookId
         image
         link
       }
-
-    }
     }
   }
 `;
 
 export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: ID!) {
+mutation removeBook($bookId: String!) {
     removeBook(bookId: $bookId) {
-        _id
+      _id
       username
       email
-      saveBook {
-        _id
+      savedBooks {
+        bookId
         title
         description
         authors
-        bookId
         image
         link
       }
-
-    }
     }
   }
 `;
