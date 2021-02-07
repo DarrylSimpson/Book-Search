@@ -1,11 +1,11 @@
 # Book-Search
 
-![badge](https://img.shields.io/badge/Javascript-50%25-red)
+<!-- ![badge](https://img.shields.io/badge/Javascript-50%25-red)
 
-![badge](https://img.shields.io/badge/JSX-50%25-red)
+![badge](https://img.shields.io/badge/JSX-50%25-red) -->
 
   ## Description
-    Personal Portfolio using React.js
+    Book Search engine using MERN stack
 
 
 
